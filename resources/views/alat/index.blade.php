@@ -12,10 +12,8 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                @if (auth()->user()->role == 'administator')
-                    <a href="{{ route('create-alat') }}" class="btn btn-primary btn-sm ml-auto"><i class="fas fa-plus"></i>
-                        Tambah</a>
-                @endif
+                <a href="{{ route('create-alat') }}" class="btn btn-primary btn-sm ml-auto"><i class="fas fa-plus"></i>
+                    Tambah</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -28,9 +26,7 @@
                                 <th>Stok</th>
                                 <th>Tanggal Masuk</th>
 
-                                @if (auth()->user()->role == 'administator')
                                 <th>Aksi</th>
-                                @endif
                             </tr>
                         </thead>
 
@@ -42,7 +38,6 @@
                                     <td>{{ $item->stok }}</td>
                                     <td>{{ date('d-m-Y', strtotime($item->tggl_masuk)) }}</td>
 
-                                    @if (auth()->user()->role == 'administator')
                                     <td class="text-center" style="width: 15%;">
                                         <form onsubmit="return confirm('Apakah Anda Yakin Menghapus?');"
                                             action="{{ route('delete-alat', $item->id) }}" method="POST">
@@ -56,7 +51,6 @@
                                                     class="fas fa-trash-alt"></i> Hapus</button>
                                         </form>
                                     </td>
-                                    @endif
 
                                 </tr>
                             @endforeach

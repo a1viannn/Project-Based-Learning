@@ -12,11 +12,9 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                @if (auth()->user()->role == 'administator')
 
                 <a href="{{ route('create-jadwal') }}" class="btn btn-primary btn-sm ml-auto"><i class="fas fa-plus"></i>
                     Tambah</a>
-                    @endif
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -28,9 +26,7 @@
                                 <th>Waktu Mulai</th>
                                 <th>Waktu Selesai</th>
                                 <th>Divisi</th>
-                                @if (auth()->user()->role == 'administator')
                                 <th>Aksi</th>
-                                @endif
                             </tr>
                         </thead>
 
@@ -49,7 +45,6 @@
                                         @endif
                                     </td>
 
-                                    @if (auth()->user()->role == 'administator')
                                     <td class="text-center" style="width: 15%;">
                                         <form onsubmit="return confirm('Apakah Anda Yakin Menghapus?');"
                                             action="{{ route('delete-jadwal', $item->id) }}" method="POST">
@@ -63,7 +58,6 @@
                                                     class="fas fa-trash-alt"></i> Hapus</button>
                                         </form>
                                     </td>
-                                    @endif
 
                                 </tr>
                             @endforeach

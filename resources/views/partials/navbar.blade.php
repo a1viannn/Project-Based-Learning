@@ -1,5 +1,4 @@
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -20,7 +19,6 @@
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-
         {{-- Garis Pembatas --}}
         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -42,6 +40,43 @@
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
+
+
+                @if (auth()->user()->roles->count() > 1)
+                    @foreach (auth()->user()->roles->where('id', '!=', auth()->user()->current_role_id) as $role)
+                        <a class="dropdown-item" href="{{ route('switch.role', $role->id) }}">
+                            <i class="fas fa-exchange-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+
+                            {{ __('Switch :name', ['name' => $role->name]) }}
+                        </a>
+                    @endforeach
+                @endif
+
+
+                {{-- @if (auth()->user()->roles->count() > 1)
+                @foreach (auth()->user()->roles->where('id', '!=', auth()->user()->current_role_id) as $role)
+                    <x-dropdown-link :href="route('switch.role', $role->id)">
+                        {{ __('Switch to :name', ['name' => $role->name]) }}
+                    </x-dropdown-link>
+                @endforeach
+                @endif --}}
+
+                <!-- jika user memiliki kedua peran -->
+                {{-- @if (Auth::user()->hasRole(['anggota']) && Auth::user()->hasRole(['pengurus']))
+                    <div class="dropdown-divider"></div>
+                    @if (session('current_role') == 'anggota')
+                        <a class="dropdown-item" href="{{ route('switch.to.pengurus') }}">
+                            <i class="fas fa-exchange-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Switch to Pengurus
+                        </a>
+                    @else
+                        <a class="dropdown-item" href="{{ route('switch.to.anggota') }}">
+                            <i class="fas fa-exchange-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Switch to Anggota
+                        </a>
+                    @endif
+                @endif --}}
+
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -49,11 +84,8 @@
                 </a>
             </div>
         </li>
-
     </ul>
-
 </nav>
-
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

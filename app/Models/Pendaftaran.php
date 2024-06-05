@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Pendaftaran extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
-    
+
     protected $table = 'pendaftarans';
     protected $primaryKey = 'id';
     protected $fillable = [
@@ -26,6 +26,7 @@ class Pendaftaran extends Model
         'divisi_2',
         'jenis_kelamin',
         'jabatan',
+        'jabatan_2',
         'status',
     ];
 }

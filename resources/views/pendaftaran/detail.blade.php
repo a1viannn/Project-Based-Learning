@@ -80,41 +80,33 @@
                         </tbody>
                     </table>
 
-                    @if (auth()->user()->role == 'administator')
 
-                        <div class="text-right">
-                            @if ($detail->status == 'menunggu')
-                                <form action="{{ route('terima-pendaftaran', $detail->id) }}" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    <button class="btn btn-success "
-                                        onclick="return confirm('Apakah anda ingin menerima?')"><i
-                                            class="fas fa-check-circle"></i> Terima</button>
-                                </form>
-                                <form action="{{ route('tolak-pendaftaran', $detail->id) }}" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    <button class="btn btn-danger" onclick="return confirm('Apakah anda ingin menolak?')"><i
-                                            class="fas fa-times-circle"></i> Tolak</button>
-                                </form>
-                            @elseif ($detail->status == 'terima')
-                                <form action="{{ route('tolak-pendaftaran', $detail->id) }}" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    <button class="btn btn-danger" onclick="return confirm('Apakah anda ingin menolak?')"><i
-                                            class="fas fa-times-circle"></i> Tolak</button>
-                                </form>
-                            @elseif ($detail->status == 'tolak')
-                                <form action="{{ route('terima-pendaftaran', $detail->id) }}" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    <button class="btn btn-success "
-                                        onclick="return confirm('Apakah anda ingin menerima?')"><i
-                                            class="fas fa-check-circle"></i> Terima</button>
-                                </form>
-                            @endif
-                        </div>
-                    @endif
+                    <div class="text-right">
+                        @if ($detail->status == 'menunggu')
+                            <form action="{{ route('terima-pendaftaran', $detail->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-success " onclick="return confirm('Apakah anda ingin menerima?')"><i
+                                        class="fas fa-check-circle"></i> Terima</button>
+                            </form>
+                            <form action="{{ route('tolak-pendaftaran', $detail->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-danger" onclick="return confirm('Apakah anda ingin menolak?')"><i
+                                        class="fas fa-times-circle"></i> Tolak</button>
+                            </form>
+                        @elseif ($detail->status == 'terima')
+                            <form action="{{ route('tolak-pendaftaran', $detail->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-danger" onclick="return confirm('Apakah anda ingin menolak?')"><i
+                                        class="fas fa-times-circle"></i> Tolak</button>
+                            </form>
+                        @elseif ($detail->status == 'tolak')
+                            <form action="{{ route('terima-pendaftaran', $detail->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-success " onclick="return confirm('Apakah anda ingin menerima?')"><i
+                                        class="fas fa-check-circle"></i> Terima</button>
+                            </form>
+                        @endif
+                    </div>
 
                 </div>
             </div>
